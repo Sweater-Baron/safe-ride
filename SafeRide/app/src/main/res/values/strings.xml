@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">SafeRide</string>
+    <string name="title_activity_create_account">CreateAccount</string>
+    <string name="username">John Doe</string>
+    <string name="create">Join SafeRide!</string>
+    <string name="student">951XXXXXXX</string>
+    <string name="phoneNumber">5555555555</string>
+
+    <string name="start">Starting Address</string>
+    <string name="end">Ending Address</string>
+    <string name="passengers">Number of passengers</string>
+
+    <string name="getSafe">Get Safe!</string>
+
+    <string name="title_activity_make_request">makeRequest</string>
+</resources>

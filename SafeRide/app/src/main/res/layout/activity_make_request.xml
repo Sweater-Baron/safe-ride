@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.uoregoncis422.saferide.makeRequest">
+
+    <EditText android:hint="@string/start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:imeActionId="0x00000006"
+        android:id="@+id/startAddy"
+        android:imeOptions="actionDone"
+        android:singleLine="true"
+        android:lines="1"/>
+
+    <EditText android:hint="@string/end"
+        android:layout_below="@+id/startAddy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/endAddy"
+        android:singleLine="true"
+        android:lines="1"
+        android:inputType="number"/>
+
+    <!--<TextEdit-->
+        <!--android:text="@string/homeOp"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@+id/startAddy"-->
+        <!--android:imeActionId="0x00000006"-->
+        <!--android:id="@+id/ASAP"-->
+        <!--android:singleLine="true"-->
+        <!--android:lines="1"/>-->
+
+    <EditText android:hint="@string/passengers"
+        android:layout_below="@+id/endAddy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:imeActionId="0x00000006"
+        android:id="@+id/peopleNumber"
+        android:singleLine="true"
+        android:lines="1"
+        android:inputType="number"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/peopleNumber"
+        android:text="@string/getSafe"
+        android:textColor="#ffffff"
+        android:onClick="createUser"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/startAddy"
+        android:layout_centerVertical="true"
+        android:adjustViewBounds="true"
+        android:src="@drawable/saferide_banner"
+        android:id="@+id/banner"
+        />
+
+</RelativeLayout>
