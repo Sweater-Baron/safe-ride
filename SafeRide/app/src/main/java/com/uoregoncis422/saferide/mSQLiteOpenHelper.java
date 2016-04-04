@@ -82,6 +82,35 @@ public class mSQLiteOpenHelper extends SQLiteOpenHelper {
         long idx = db.insert(TABLE_USER_INFO, null, values);
     }
 
+    public void updateUser(String name, String studentID, String phoneNumber){
+        ContentValues values = new ContentValues();
+        values.put(COL_NAME, name);
+        values.put(COL_PHONE_NUMBER, studentID);
+        values.put(COL_STUDENT_ID, phoneNumber);
+
+        Cursor c = db.rawQuery("SELECT * FROM "+TABLE_USER_INFO, null);
+
+        if(c.moveToFirst()){
+            db.update(TABLE_USER_INFO, values, COL_ID + "=" + 1, null);
+        }
+
+        //long idx = db.update(TABLE_USER_INFO, values, " WHERE 1=1", null);
+    }
+
+    public ArrayList<String> getUserInfo(){
+        ArrayList<String> returnList = new ArrayList<String>();
+        Cursor c = db.rawQuery("SELECT * FROM "+ TABLE_USER_INFO, null);
+        while(c.moveToNext()){
+            for(int i = 1; i < c.getColumnCount(); i++){
+                returnList.add(c.getString(i));
+                //Log.i("JSON",c.getString(i)+"");
+            }
+        }
+        c.close();
+        return returnList;
+    }
+
+
 
 
 

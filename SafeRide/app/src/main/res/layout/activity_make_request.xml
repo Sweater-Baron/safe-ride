@@ -14,9 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:imeActionId="0x00000006"
         android:id="@+id/startAddy"
-        android:imeOptions="actionDone"
         android:singleLine="true"
         android:lines="1"/>
 
@@ -27,8 +25,7 @@
         android:layout_centerHorizontal="true"
         android:id="@+id/endAddy"
         android:singleLine="true"
-        android:lines="1"
-        android:inputType="number"/>
+        android:lines="1"/>
 
     <!--<TextEdit-->
         <!--android:text="@string/homeOp"-->
@@ -52,12 +49,24 @@
         android:lines="1"
         android:inputType="number"/>
     <Button
+        android:id="@+id/requestButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/peopleNumber"
         android:text="@string/getSafe"
         android:textColor="#ffffff"
-        android:onClick="createUser"
+        android:onClick="checkInfo"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/requestButton"
+        android:text="@string/editP"
+        android:textColor="#ffffff"
+        android:onClick="editProfile"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:layout_centerHorizontal="true" />

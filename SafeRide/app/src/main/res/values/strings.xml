@@ -11,6 +11,7 @@
     <string name="passengers">Number of passengers</string>
 
     <string name="getSafe">Get Safe!</string>
+    <string name="editP">Edit Profile</string>
 
     <string name="title_activity_make_request">makeRequest</string>
 </resources>

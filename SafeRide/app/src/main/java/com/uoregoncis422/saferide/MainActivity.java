@@ -23,7 +23,6 @@ public class MainActivity extends ActionBarActivity {
     }
 
     private void goToCreateAccount(){
-        //Intent intent =
         startActivity(new Intent(this, CreateAccount.class));
     }
 }

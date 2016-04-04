@@ -16,9 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:imeActionId="0x00000006"
         android:id="@+id/userName"
-        android:imeOptions="actionDone"
         android:singleLine="true"
         android:lines="1"/>
     <EditText android:hint="@string/student"
@@ -27,7 +25,6 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:imeActionId="0x00000006"
         android:id="@+id/studentid"
         android:singleLine="true"
         android:lines="1"
