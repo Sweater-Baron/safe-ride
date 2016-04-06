@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import org.apache.http.protocol.HTTP;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,8 +29,7 @@ public class makeRequest extends ActionBarActivity {
 
     public void createJSON(ArrayList<String> requestInfo){
         ArrayList<String> userInfo = DB.getUserInfo();
-        String[] keys = new String[]{"name", "studentid", "number", "startAddress", "endAddress", "numberOfPassengers", "pickUpTime"};
-
+        String[] keys = new String[]{"name", "studentid", "phonenumber", "pickup", "dropoff", "numberOfPassengers", "time"};
         JSONArray jsonArray = new JSONArray();
         for(int i = 0; i < userInfo.size(); i++){
             jsonArray.put(createJSONobj(keys[i],userInfo.get(i)));
@@ -40,7 +40,7 @@ public class makeRequest extends ActionBarActivity {
             jsonArray.put(createJSONobj(keys[i+userInfo.size()],requestInfo.get(i)));
         }
 
-        //sendJSON(jsonArray);
+        sendJSON(jsonArray);
         printJSON(jsonArray);
     }
 
@@ -95,6 +95,11 @@ public class makeRequest extends ActionBarActivity {
 
     public void editProfile(View view){
         startActivityForResult(new Intent(this, CreateAccount.class), 1);
+    }
+
+    public void sendJSON(JSONArray jArray){
+        HttpHelper httpHelper = new HttpHelper(DB);
+        httpHelper.uploadJSON(jArray.toString());
     }
 
 
