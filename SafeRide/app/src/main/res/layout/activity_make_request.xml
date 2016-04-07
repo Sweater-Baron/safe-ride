@@ -7,7 +7,26 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.uoregoncis422.saferide.makeRequest">
+    tools:context="com.uoregoncis422.saferide.makeRequest"
+    android:background="@drawable/crop_city_lights"
+    android:backgroundTint="#dddddd"
+    android:backgroundTintMode="multiply">
+
+    <TextView
+        android:id="@+id/text_id"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:capitalize="characters"
+        android:text="Welcome to Safe Ride"
+        android:textColor="#FFFFFF"
+        android:textColorHighlight="@android:color/primary_text_dark"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:textSize="50dp"
+        android:fontFamily="sans-serif-light"
+        android:focusableInTouchMode="true"
+        android:layout_above="@+id/startAddy"
+        android:layout_centerHorizontal="true" />
 
     <EditText android:hint="@string/start"
         android:layout_width="wrap_content"
@@ -16,7 +35,9 @@
         android:layout_centerHorizontal="true"
         android:id="@+id/startAddy"
         android:singleLine="true"
-        android:lines="1"/>
+        android:lines="1"
+        android:textColorHint="#FFFFFF"
+        android:textColor="#FFFFFF" />
 
     <EditText android:hint="@string/end"
         android:layout_below="@+id/startAddy"
@@ -25,7 +46,9 @@
         android:layout_centerHorizontal="true"
         android:id="@+id/endAddy"
         android:singleLine="true"
-        android:lines="1"/>
+        android:lines="1"
+        android:textColorHint="#FFFFFF"
+        android:textColor="#FFFFFF"/>
 
     <!--<TextEdit-->
         <!--android:text="@string/homeOp"-->
@@ -47,7 +70,9 @@
         android:id="@+id/peopleNumber"
         android:singleLine="true"
         android:lines="1"
-        android:inputType="number"/>
+        android:inputType="number"
+        android:textColorHint="#FFFFFF"
+        android:textColor="#FFFFFF"/>
     <Button
         android:id="@+id/requestButton"
         android:layout_width="wrap_content"
@@ -58,27 +83,20 @@
         android:onClick="checkInfo"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="#8696a8" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/requestButton"
         android:text="@string/editP"
-        android:textColor="#ffffff"
+        android:textColor="#f1f1f1"
         android:onClick="editProfile"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_centerHorizontal="true" />
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/startAddy"
-        android:layout_centerVertical="true"
-        android:adjustViewBounds="true"
-        android:src="@drawable/saferide_banner"
-        android:id="@+id/banner"
-        />
+        android:backgroundTint="#2f2f2f"
+        android:textSize="12sp"
+        android:id="@+id/button"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/peopleNumber"
+        android:layout_toEndOf="@+id/peopleNumber" />
 
 </RelativeLayout>
