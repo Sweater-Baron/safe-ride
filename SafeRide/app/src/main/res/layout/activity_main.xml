@@ -8,24 +8,22 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.uoregoncis422.saferide.MainActivity"
-    android:background="@drawable/crop_city_lights"
     android:backgroundTint="#dddddd"
     android:backgroundTintMode="multiply">
+    <!--android:background="@drawable/crop_city_lights">-->
 
     <TextView
         android:id="@+id/text_id"
         android:layout_width="300dp"
         android:layout_height="200dp"
         android:capitalize="characters"
-        android:text="Welcome to Safe Ride"
+        android:text="@string/welcome"
         android:textColor="#ffffff"
         android:textColorHighlight="@android:color/primary_text_dark"
         android:textAlignment="center"
         android:gravity="center"
         android:textSize="50dp"
         android:fontFamily="sans-serif-light"
-        android:focusableInTouchMode="true"
-        android:focusable="true"
         android:layout_marginTop="80dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />

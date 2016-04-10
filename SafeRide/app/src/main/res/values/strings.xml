@@ -13,5 +13,8 @@
     <string name="getSafe">Get Safe!</string>
     <string name="editP">Profile</string>
 
+    <string name="welcome">Welcome to Safe Ride</string>
+    <string name="schedule">Schedule Your Ride</string>
+
     <string name="title_activity_make_request">makeRequest</string>
 </resources>

@@ -29,7 +29,7 @@ public class HttpHelper {
     private String request(String jString){
         String data = "";
         try {
-            URL url = new URL("ix.uoregon.edu/home/users/cquinn/mfolder/safe-ride/server");
+            URL url = new URL("cquinn@ix.cs.uoregon.edu:5000/_createFromApp");
             Log.i("upload", "URL is " + url.toString());
 
             URLConnection conn = url.openConnection();

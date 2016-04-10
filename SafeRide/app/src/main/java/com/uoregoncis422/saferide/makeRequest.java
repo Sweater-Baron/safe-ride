@@ -1,5 +1,6 @@
 package com.uoregoncis422.saferide;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -16,7 +17,7 @@ import org.json.JSONObject;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class makeRequest extends ActionBarActivity {
+public class makeRequest extends Activity {
 
     mSQLiteOpenHelper DB;
 

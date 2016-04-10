@@ -1,5 +1,6 @@
 package com.uoregoncis422.saferide;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -8,7 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class CreateAccount extends ActionBarActivity {
+public class CreateAccount extends Activity {
 
     public mSQLiteOpenHelper DB;
 

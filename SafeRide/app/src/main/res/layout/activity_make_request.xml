@@ -8,16 +8,17 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.uoregoncis422.saferide.makeRequest"
-    android:background="@drawable/crop_city_lights"
     android:backgroundTint="#dddddd"
     android:backgroundTintMode="multiply">
+    <!--android:background="@drawable/crop_city_lights"-->
+
 
     <TextView
         android:id="@+id/text_id"
         android:layout_width="300dp"
         android:layout_height="200dp"
         android:capitalize="characters"
-        android:text="Welcome to Safe Ride"
+        android:text="@string/schedule"
         android:textColor="#FFFFFF"
         android:textColorHighlight="@android:color/primary_text_dark"
         android:textAlignment="center"
@@ -25,30 +26,69 @@
         android:textSize="50dp"
         android:fontFamily="sans-serif-light"
         android:focusableInTouchMode="true"
-        android:layout_above="@+id/startAddy"
         android:layout_centerHorizontal="true" />
 
-    <EditText android:hint="@string/start"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/startAddy"
-        android:singleLine="true"
-        android:lines="1"
-        android:textColorHint="#FFFFFF"
-        android:textColor="#FFFFFF" />
 
-    <EditText android:hint="@string/end"
-        android:layout_below="@+id/startAddy"
+    <LinearLayout
+        android:id="@+id/startContainer"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="120dp"
         android:layout_centerHorizontal="true"
-        android:id="@+id/endAddy"
-        android:singleLine="true"
-        android:lines="1"
-        android:textColorHint="#FFFFFF"
-        android:textColor="#FFFFFF"/>
+        android:layout_below="@+id/text_id">
+
+        <EditText android:hint="@string/start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_alignParentLeft="true"
+            android:id="@+id/startAddy"
+            android:singleLine="true"
+            android:lines="1"
+            android:textColorHint="#FFFFFF"
+            android:textColor="#FFFFFF" />
+
+        <ImageButton
+            android:layout_height="60dp"
+            android:layout_width="60dp"
+            android:scaleType="fitXY"
+            android:id="@+id/homeStartButton"
+            android:src="@drawable/home_icon"
+            android:padding="10dp"
+            android:layout_alignParentRight="true"
+            android:onClick="homeAddressFillStart"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/endContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="120dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/startContainer">
+
+        <EditText android:hint="@string/end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_alignParentLeft="true"
+            android:id="@+id/endAddy"
+            android:singleLine="true"
+            android:lines="1"
+            android:textColorHint="#FFFFFF"
+            android:textColor="#FFFFFF"/>
+
+        <ImageButton
+            android:layout_height="60dp"
+            android:layout_width="60dp"
+            android:scaleType="fitXY"
+            android:id="@+id/homeEndButton"
+            android:src="@drawable/home_icon"
+            android:padding="10dp"
+            android:layout_alignParentRight="true"
+            android:onClick="homeAddressFillEnd"/>
+    </LinearLayout>
+
+
+
 
     <!--<TextEdit-->
         <!--android:text="@string/homeOp"-->
@@ -61,10 +101,9 @@
         <!--android:lines="1"/>-->
 
     <EditText android:hint="@string/passengers"
-        android:layout_below="@+id/endAddy"
+        android:layout_below="@+id/endContainer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:imeActionId="0x00000006"
         android:id="@+id/peopleNumber"
@@ -83,8 +122,8 @@
         android:onClick="checkInfo"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
-        android:layout_centerHorizontal="true"
-        android:backgroundTint="#8696a8" />
+        android:layout_centerHorizontal="true"/>
+        <!--android:backgroundTint="#8696a8" />-->
 
     <Button
         android:layout_width="wrap_content"
@@ -92,11 +131,11 @@
         android:text="@string/editP"
         android:textColor="#f1f1f1"
         android:onClick="editProfile"
-        android:backgroundTint="#2f2f2f"
         android:textSize="12sp"
         android:id="@+id/button"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/peopleNumber"
-        android:layout_toEndOf="@+id/peopleNumber" />
+        android:layout_toEndOf="@+id/peopleNumber"/>
+        <!--android:backgroundTint="#2f2f2f" />-->
 
 </RelativeLayout>
