@@ -1,5 +1,6 @@
 package com.uoregoncis422.saferide;
 
+import android.os.AsyncTask;
 import android.util.Log;
 
 import java.io.BufferedReader;
@@ -22,42 +23,51 @@ public class HttpHelper {
     }
 
     public void uploadJSON(String jString){
-        String reply = request(jString);
-        Log.i("upload",reply);
+        request(jString);;
     }
 
-    private String request(String jString){
-        String data = "";
-        try {
-            URL url = new URL("cquinn@ix.cs.uoregon.edu:5000/_createFromApp");
-            Log.i("upload", "URL is " + url.toString());
+    private void request(String jString){
+        new OtherThread().execute(jString);
+    }
 
-            URLConnection conn = url.openConnection();
-            conn.setDoInput(true);
-            conn.setDoOutput(true);
+    private class OtherThread extends AsyncTask<String, Void, String> {
+        protected String doInBackground(String... jString) {
+                String data = "";
+                try {
+                    URL url = new URL("http://ix.cs.uoregon.edu:6666/_createFromApp");
+                    Log.i("upload", "URL is " + url.toString());
 
-            OutputStreamWriter os = new OutputStreamWriter(conn.getOutputStream(), "UTF-8");
-            os.write(jString); //writes JSON to body of php
-            os.close();
+                    URLConnection conn = url.openConnection();
+                    conn.setDoInput(true);
+                    conn.setDoOutput(true);
 
-            conn.connect();
-            int code = ((HttpURLConnection) conn).getResponseCode();
-            Log.i("upload", "code: " + code);
-            if(code!=200){
-                return "server error";
-            }
+                    OutputStreamWriter os = new OutputStreamWriter(conn.getOutputStream(), "UTF-8");
+                    os.write(jString[0]); //writes JSON to body of php
+                    os.close();
 
-            BufferedReader br = new BufferedReader((new InputStreamReader(
-                    conn.getInputStream())));
-            StringBuffer b = new StringBuffer();
-            String line = "";
-            while ((line = br.readLine()) != null) {
-                b.append(line);
-            }
-            data = b.toString(); //response from server to string
-        }catch (Exception e){
-            Log.i("upload", "error here "+ e.toString()+ " "+ e.getCause() );
+                    conn.connect();
+                    int code = ((HttpURLConnection) conn).getResponseCode();
+                    Log.i("upload", "code: " + code);
+                    if(code!=200){
+                        return "server error";
+                    }
+
+                    BufferedReader br = new BufferedReader((new InputStreamReader(
+                            conn.getInputStream())));
+                    StringBuffer b = new StringBuffer();
+                    String line = "";
+                    while ((line = br.readLine()) != null) {
+                        b.append(line);
+                    }
+                    data = b.toString(); //response from server to string
+                }catch (Exception e){
+                    Log.i("upload", "error here "+ e.toString()+ " "+ e.getCause() );
+                }
+                return data;
         }
-        return data;
+
+        protected void onPostExecute(String response) {
+            Log.i("upload",response);
+        }
     }
 }
