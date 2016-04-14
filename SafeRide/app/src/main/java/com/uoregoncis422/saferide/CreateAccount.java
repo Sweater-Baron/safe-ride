@@ -12,6 +12,11 @@ import android.widget.Toast;
 public class CreateAccount extends Activity {
 
     public mSQLiteOpenHelper DB;
+    private EditText usernameBox;
+    private EditText studentBox;
+    private EditText phoneBox;
+    private EditText addressBox;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,27 +27,36 @@ public class CreateAccount extends Activity {
     }
 
     public void createUser(View view){
-        EditText usernameBox = (EditText) findViewById(R.id.userName);
-        EditText studentBox = (EditText) findViewById(R.id.studentid);
-        EditText phoneBox = (EditText) findViewById(R.id.phonenumber);
+        usernameBox = (EditText) findViewById(R.id.userName);
+        studentBox = (EditText) findViewById(R.id.studentid);
+        phoneBox = (EditText) findViewById(R.id.phonenumber);
+        addressBox = (EditText) findViewById(R.id.homeAddress);
 
         String usernameText = usernameBox.getText().toString();
         String studentText = studentBox.getText().toString();
         String phoneText = phoneBox.getText().toString();
+        String addressText = addressBox.getText().toString();
 
-        if(usernameText.length() > 0 && studentText.length() > 0 && phoneText.length() > 0){//make sure they're all filled with something
-            //further validate? #TODO
-            if(!DB.isUser()){
-                DB.createUser(usernameText, studentText, phoneText);
-                startActivity(new Intent(this, makeRequest.class));
-            }else{
-                DB.updateUser(usernameText, studentText, phoneText);
-                setResult(RESULT_OK, new Intent(this, makeRequest.class));
-                finish();
-            }
+        if(phoneText.length() != 7){
+            Toast.makeText(getApplicationContext(), "Please enter a valid phone number", Toast.LENGTH_LONG).show();
         }else{
-            Toast.makeText(getApplicationContext(), "Make sure to fill out all fields!", Toast.LENGTH_LONG).show();
+            if(usernameText.length() > 0 && studentText.length() > 0 && phoneText.length() >0 && addressText.length() > 0){//make sure they're all filled with something
+                //further validate? #TODO
+                if(!DB.isUser()){
+                    DB.createUser(usernameText, studentText, phoneText, addressText);
+                    startActivity(new Intent(this, makeRequest.class));
+                }else{
+                    DB.updateUser(usernameText, studentText, phoneText, addressText);
+                    setResult(RESULT_OK, new Intent(this, makeRequest.class));
+                    finish();
+                }
+            }else{
+                Toast.makeText(getApplicationContext(), "Make sure to fill out all fields!", Toast.LENGTH_LONG).show();
+            }
         }
+
+
+
 
 
 

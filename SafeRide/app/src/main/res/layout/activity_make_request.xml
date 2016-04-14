@@ -16,7 +16,7 @@
     <TextView
         android:id="@+id/text_id"
         android:layout_width="300dp"
-        android:layout_height="200dp"
+        android:layout_height="150dp"
         android:capitalize="characters"
         android:text="@string/schedule"
         android:textColor="#FFFFFF"
@@ -32,7 +32,7 @@
     <LinearLayout
         android:id="@+id/startContainer"
         android:layout_width="wrap_content"
-        android:layout_height="120dp"
+        android:layout_height="75dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/text_id">
 
@@ -48,8 +48,8 @@
             android:textColor="#FFFFFF" />
 
         <ImageButton
-            android:layout_height="60dp"
-            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:layout_width="40dp"
             android:scaleType="fitXY"
             android:id="@+id/homeStartButton"
             android:src="@drawable/home_icon"
@@ -61,7 +61,7 @@
     <LinearLayout
         android:id="@+id/endContainer"
         android:layout_width="wrap_content"
-        android:layout_height="120dp"
+        android:layout_height="75dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/startContainer">
 
@@ -77,8 +77,8 @@
             android:textColor="#FFFFFF"/>
 
         <ImageButton
-            android:layout_height="60dp"
-            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:layout_width="40dp"
             android:scaleType="fitXY"
             android:id="@+id/homeEndButton"
             android:src="@drawable/home_icon"
@@ -87,21 +87,31 @@
             android:onClick="homeAddressFillEnd"/>
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/timeContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/endContainer">
+
+        <TimePicker
+            android:id="@+id/timePicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="setTime"/>
+
+    </LinearLayout>
 
 
 
-    <!--<TextEdit-->
-        <!--android:text="@string/homeOp"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_below="@+id/startAddy"-->
-        <!--android:imeActionId="0x00000006"-->
-        <!--android:id="@+id/ASAP"-->
-        <!--android:singleLine="true"-->
-        <!--android:lines="1"/>-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/timeContainer"
+        android:id="@+id/timeText"/>
 
     <EditText android:hint="@string/passengers"
-        android:layout_below="@+id/endContainer"
+        android:layout_below="@+id/timeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -125,17 +135,30 @@
         android:layout_centerHorizontal="true"/>
         <!--android:backgroundTint="#8696a8" />-->
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/editP"
-        android:textColor="#f1f1f1"
-        android:onClick="editProfile"
-        android:textSize="12sp"
-        android:id="@+id/button"
+    <!--<Button-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="@string/editP"-->
+        <!--android:textColor="#f1f1f1"-->
+        <!--android:onClick="editProfile"-->
+        <!--android:textSize="12sp"-->
+        <!--android:id="@+id/button"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_toRightOf="@+id/peopleNumber"-->
+        <!--android:layout_toEndOf="@+id/peopleNumber"-->
+        <!--android:backgroundTint="#2f2f2f" />-->
+
+    <ImageButton
+        android:layout_height="40dp"
+        android:layout_width="40dp"
+        android:scaleType="fitXY"
+        android:id="@+id/editProfile"
+        android:src="@drawable/edit_profile"
+        android:padding="10dp"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/peopleNumber"
-        android:layout_toEndOf="@+id/peopleNumber"/>
-        <!--android:backgroundTint="#2f2f2f" />-->
+        android:layout_toEndOf="@+id/peopleNumber"
+        android:backgroundTint="#2f2f2f"
+        android:onClick="editProfile"/>
 
 </RelativeLayout>
