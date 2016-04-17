@@ -37,7 +37,7 @@ public class CreateAccount extends Activity {
         String phoneText = phoneBox.getText().toString();
         String addressText = addressBox.getText().toString();
 
-        if(phoneText.length() != 7){
+        if(phoneText.length() < 10){
             Toast.makeText(getApplicationContext(), "Please enter a valid phone number", Toast.LENGTH_LONG).show();
         }else{
             if(usernameText.length() > 0 && studentText.length() > 0 && phoneText.length() >0 && addressText.length() > 0){//make sure they're all filled with something

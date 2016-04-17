@@ -2,18 +2,20 @@ package com.uoregoncis422.saferide;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.NumberPicker;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -24,12 +26,12 @@ public class makeRequest extends Activity {
 
     private TimePicker timePicker;
     private Calendar calendar;
-    private TextView time;
     private String format = "";
 
     private EditText editTexts;
     private EditText editTexte;
     private EditText editTextp;
+    private Resources system;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,7 @@ public class makeRequest extends Activity {
 
         setTimeStuff();
         setEditTexts();
+        set_timepicker_text_colour();
 
         int hour = calendar.get(Calendar.HOUR_OF_DAY);
         int min = calendar.get(Calendar.MINUTE);
@@ -48,7 +51,6 @@ public class makeRequest extends Activity {
 
     private void setTimeStuff(){
         timePicker = (TimePicker) findViewById(R.id.timePicker);
-        time = (TextView) findViewById(R.id.timeText);
         calendar = Calendar.getInstance();
     }
 
@@ -58,12 +60,12 @@ public class makeRequest extends Activity {
         editTextp = (EditText) findViewById(R.id.peopleNumber);
     }
 
-    public void setTime(View view) {
-        int hour = timePicker.getCurrentHour();
-        int min = timePicker.getCurrentMinute();
-        showTime(hour, min);
-    }
-
+//    public void setTime(View view) {
+//        int hour = timePicker.getCurrentHour();
+//        int min = timePicker.getCurrentMinute();
+//        showTime(hour, min);
+//    }
+//
     public void showTime(int hour, int min) {
         if (hour == 0) {
             hour += 12;
@@ -77,38 +79,32 @@ public class makeRequest extends Activity {
         } else {
             format = "AM";
         }
-        time.setText(new StringBuilder().append(hour).append(" : ").append(min)
-                .append(" ").append(format));
+//        time.setText(new StringBuilder().append(hour).append(" : ").append(min)
+//                .append(" ").append(format));
     }
 
     public void createJSON(ArrayList<String> requestInfo){
         ArrayList<String> userInfo = DB.getUserInfo();
-        String[] keys = new String[]{"name", "studentid", "phonenumber", "pickup", "dropoff", "numberOfPassengers", "time"};
-        JSONArray jsonArray = new JSONArray();
-        for(int i = 0; i < userInfo.size(); i++){
-            jsonArray.put(createJSONobj(keys[i],userInfo.get(i)));
-        }
-
-        Log.i("JSON", "" + requestInfo.size());
-        for(int i = 0; i < requestInfo.size(); i++){
-            jsonArray.put(createJSONobj(keys[i+userInfo.size()],requestInfo.get(i)));
-        }
-
-        sendJSON(jsonArray);
-        printJSON(jsonArray);
-    }
-
-    public JSONObject createJSONobj(String key, String val){
+        String[] keys = new String[]{"name", "phonenumber", "studentid", "pickup", "dropoff", "numberOfPassengers","time"};
         JSONObject jObj = new JSONObject();
         try {
-            jObj.put(key,val);
-        } catch (JSONException e) {
-            e.printStackTrace();
+            for (int i = 0; i < userInfo.size()-1; i++) {
+                jObj.put(keys[i], userInfo.get(i));
+            }
+
+            Log.i("JSON", "" + requestInfo.size());
+            for (int i = 0; i < requestInfo.size(); i++) {
+                jObj.put(keys[i + userInfo.size()-1], requestInfo.get(i));
+            }
+        }catch(Exception e){
+
         }
-        return jObj;
+
+        sendJSON(jObj);
+        printJSON(jObj);
     }
 
-    public void printJSON(JSONArray jsonArray){
+    public void printJSON(JSONObject jsonArray){
         Log.i("JSON", jsonArray.toString());
     }
 
@@ -118,14 +114,10 @@ public class makeRequest extends Activity {
         int missingInput = -1;
         ArrayList<String> arrayList = new ArrayList<>();
 
-        int hour = timePicker.getCurrentHour();
-        int min = timePicker.getCurrentMinute();
-
-        Toast.makeText(getApplicationContext(), "time input h: "+hour+" m: "+min, Toast.LENGTH_LONG).show();
-
         arrayList.add(editTexts.getText().toString());
         arrayList.add(editTexte.getText().toString());
         arrayList.add(editTextp.getText().toString());
+        arrayList.add(getTimeString());
 
         for(int i = 0; i < arrayList.size(); i++){
             if(arrayList.get(i).length()<=0){
@@ -134,15 +126,20 @@ public class makeRequest extends Activity {
             }
         }
 
-        if(Integer.parseInt(arrayList.get(2))>3){
-            validInput =false;
-            tooManyPassengers = true;
+        try {
+            if (Integer.parseInt(arrayList.get(2)) > 3) {
+                validInput = false;
+                tooManyPassengers = true;
+            }
+        }catch(Exception e){
+
         }
 
         //Validate both addresses, validate that time is within schedule. Addresses must both be real addresses and in bounds
 
         if(!validInput){
             //Toast incorrect input
+            arrayList.clear();
             if(missingInput == 0){
                 Toast.makeText(getApplicationContext(), "Invalid Start Address", Toast.LENGTH_LONG).show();
             }else if(missingInput == 1){
@@ -159,11 +156,31 @@ public class makeRequest extends Activity {
         }
     }
 
+    private String getTimeString(){
+        int hour = timePicker.getCurrentHour();
+        int min = timePicker.getCurrentMinute();
+
+        if (hour == 0) {
+            hour += 12;
+            format = "AM";
+        }
+        else if (hour == 12) {
+            format = "PM";
+        } else if (hour > 12) {
+            hour -= 12;
+            format = "PM";
+        } else {
+            format = "AM";
+        }
+
+        return hour+":"+min+ " " + format;
+    }
+
     public void editProfile(View view){
         startActivityForResult(new Intent(this, CreateAccount.class), 1);
     }
 
-    public void sendJSON(JSONArray jArray){
+    public void sendJSON(JSONObject jArray){
         httpHelper.uploadJSON(jArray.toString());
     }
 
@@ -174,6 +191,52 @@ public class makeRequest extends Activity {
 
     public void homeAddressFillEnd(View view){
         editTexte.setText(DB.getUserAddress());
+    }
+
+
+
+    //below code is from stack overflow
+    private void set_timepicker_text_colour(){
+        system = Resources.getSystem();
+        int hour_numberpicker_id = system.getIdentifier("hour", "id", "android");
+        int minute_numberpicker_id = system.getIdentifier("minute", "id", "android");
+        int ampm_numberpicker_id = system.getIdentifier("amPm", "id", "android");
+
+        NumberPicker hour_numberpicker = (NumberPicker) timePicker.findViewById(hour_numberpicker_id);
+        NumberPicker minute_numberpicker = (NumberPicker) timePicker.findViewById(minute_numberpicker_id);
+        NumberPicker ampm_numberpicker = (NumberPicker) timePicker.findViewById(ampm_numberpicker_id);
+
+        set_numberpicker_text_colour(hour_numberpicker);
+        set_numberpicker_text_colour(minute_numberpicker);
+        set_numberpicker_text_colour(ampm_numberpicker);
+    }
+
+    private void set_numberpicker_text_colour(NumberPicker number_picker){
+        final int count = number_picker.getChildCount();
+        //final int color = getResources().getColor(R.color.text);
+        final int color = Color.WHITE;
+
+        for(int i = 0; i < count; i++){
+            View child = number_picker.getChildAt(i);
+
+            try{
+                Field wheelpaint_field = number_picker.getClass().getDeclaredField("mSelectorWheelPaint");
+                wheelpaint_field.setAccessible(true);
+
+                ((Paint)wheelpaint_field.get(number_picker)).setColor(color);
+                ((EditText)child).setTextColor(color);
+                number_picker.invalidate();
+            }
+            catch(NoSuchFieldException e){
+                Log.w("setNumberPickerTextColo", e);
+            }
+            catch(IllegalAccessException e){
+                Log.w("setNumberPickerTextColo", e);
+            }
+            catch(IllegalArgumentException e){
+                Log.w("setNumberPickerTextColo", e);
+            }
+        }
     }
 
 
