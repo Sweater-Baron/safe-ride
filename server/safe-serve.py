@@ -33,13 +33,15 @@ def handle_create_request():
     return "Your request has been processed."
     
 @app.route("/_createFromApp")
-    fields = ["name", "studentid", "phonenumber", "pickup", "dropoff", "time"]
+def handle_app_request():
+    fields = ["name", "studentid", "phonenumber", "pickup", "dropoff", "numberOfPassengers"]
     user_request = {}
     for thing in fields:
         user_request[thing] = request.args.get(thing, type=str)
-    user_request["numberOfPassengers"] = request.args.get(
-        "numberOfPassengers", type=int)
+    #user_request["numberOfPassengers"] = request.args.get(
+    #    "numberOfPassengers", type=int)
     print(user_request)
+    return "okay"
 
 @app.errorhandler(404)
 def page_not_found(error):
