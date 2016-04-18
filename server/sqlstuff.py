@@ -18,5 +18,13 @@ def insert_request_to_db(user_request):
 	qry = "Insert Into UNSCHEDULED (%s) Values (%s)" % (qmarks, qmarks)
 	cur.execute(qry, user_request.keys() + user_request.values())
 
+def select_all():
+	db = sqlite3.connect('saferide.db')
+	cur = db.cursor()
+	cur.execute("SELECT * FROM UNSCHEDULED")
+	first = cur.fetchone()
+	print(first[0])
+
+
 if __name__ == "__main__":
     create_table()
