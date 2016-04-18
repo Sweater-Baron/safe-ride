@@ -46,7 +46,7 @@ public class makeRequest extends Activity {
 
         int hour = calendar.get(Calendar.HOUR_OF_DAY);
         int min = calendar.get(Calendar.MINUTE);
-        showTime(hour, min);
+        //showTime(hour, min);
     }
 
     private void setTimeStuff(){
@@ -58,29 +58,6 @@ public class makeRequest extends Activity {
         editTexts = (EditText) findViewById(R.id.startAddy);
         editTexte = (EditText) findViewById(R.id.endAddy);
         editTextp = (EditText) findViewById(R.id.peopleNumber);
-    }
-
-//    public void setTime(View view) {
-//        int hour = timePicker.getCurrentHour();
-//        int min = timePicker.getCurrentMinute();
-//        showTime(hour, min);
-//    }
-//
-    public void showTime(int hour, int min) {
-        if (hour == 0) {
-            hour += 12;
-            format = "AM";
-        }
-        else if (hour == 12) {
-            format = "PM";
-        } else if (hour > 12) {
-            hour -= 12;
-            format = "PM";
-        } else {
-            format = "AM";
-        }
-//        time.setText(new StringBuilder().append(hour).append(" : ").append(min)
-//                .append(" ").append(format));
     }
 
     public void createJSON(ArrayList<String> requestInfo){
@@ -193,9 +170,7 @@ public class makeRequest extends Activity {
         editTexte.setText(DB.getUserAddress());
     }
 
-
-
-    //below code is from stack overflow
+    //below code is from stack overflow, all it does is  change the text of the timePicker
     private void set_timepicker_text_colour(){
         system = Resources.getSystem();
         int hour_numberpicker_id = system.getIdentifier("hour", "id", "android");

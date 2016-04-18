@@ -9,6 +9,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class CreateAccount extends Activity {
 
     public mSQLiteOpenHelper DB;
@@ -17,6 +20,7 @@ public class CreateAccount extends Activity {
     private EditText phoneBox;
     private EditText addressBox;
 
+    boolean isUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,14 +28,24 @@ public class CreateAccount extends Activity {
         setContentView(R.layout.activity_create_account);
 
         DB = new mSQLiteOpenHelper(this);
-    }
 
-    public void createUser(View view){
         usernameBox = (EditText) findViewById(R.id.userName);
         studentBox = (EditText) findViewById(R.id.studentid);
         phoneBox = (EditText) findViewById(R.id.phonenumber);
         addressBox = (EditText) findViewById(R.id.homeAddress);
 
+        isUser = DB.isUser();
+
+        if(isUser){//update instead of create
+            ArrayList<String> userInfo = DB.getUserInfo();
+            usernameBox.setText(userInfo.get(0));
+            studentBox.setText(userInfo.get(2));
+            phoneBox.setText(userInfo.get(1));
+            addressBox.setText(userInfo.get(3));
+        }
+    }
+
+    public void createUser(View view){
         String usernameText = usernameBox.getText().toString();
         String studentText = studentBox.getText().toString();
         String phoneText = phoneBox.getText().toString();
@@ -42,7 +56,7 @@ public class CreateAccount extends Activity {
         }else{
             if(usernameText.length() > 0 && studentText.length() > 0 && phoneText.length() >0 && addressText.length() > 0){//make sure they're all filled with something
                 //further validate? #TODO
-                if(!DB.isUser()){
+                if(!isUser){
                     DB.createUser(usernameText, studentText, phoneText, addressText);
                     startActivity(new Intent(this, makeRequest.class));
                 }else{
@@ -54,12 +68,5 @@ public class CreateAccount extends Activity {
                 Toast.makeText(getApplicationContext(), "Make sure to fill out all fields!", Toast.LENGTH_LONG).show();
             }
         }
-
-
-
-
-
-
     }
-
 }

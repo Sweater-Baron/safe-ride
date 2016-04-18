@@ -30,16 +30,17 @@ public class mSQLiteOpenHelper extends SQLiteOpenHelper {
     // Database Name
     private static final String DATABASE_NAME = "safeRideDB";
 
-//    //Table names
+    //Table names
     private static final String TABLE_USER_INFO = "userinfo";
 
+    //Column names
     private static final String COL_ID = "idx";
     private static final String COL_NAME = "name";
     private static final String COL_STUDENT_ID = "studentid";
     private static final String COL_PHONE_NUMBER = "phonenumber";
     private static final String COL_HOME_ADDRESS = "homeaddress";
 
-
+    //create table query
     private static final String CREATE_TABLE_USER_INFO = "CREATE TABLE "
             + TABLE_USER_INFO + "(" + COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COL_NAME
             + " VARCHAR(250)," + COL_STUDENT_ID + " VARCHAR(250)," + COL_PHONE_NUMBER + " VARCHAR(250)," + COL_HOME_ADDRESS  + " VARCHAR(250)" + ")";
@@ -82,7 +83,7 @@ public class mSQLiteOpenHelper extends SQLiteOpenHelper {
         values.put(COL_STUDENT_ID, phoneNumber);
         values.put(COL_HOME_ADDRESS, address);
 
-        long idx = db.insert(TABLE_USER_INFO, null, values);
+        db.insert(TABLE_USER_INFO, null, values);
     }
 
     public void updateUser(String name, String studentID, String phoneNumber, String address){
@@ -97,8 +98,6 @@ public class mSQLiteOpenHelper extends SQLiteOpenHelper {
         if(c.moveToFirst()){
             db.update(TABLE_USER_INFO, values, COL_ID + "=" + 1, null);
         }
-
-        //long idx = db.update(TABLE_USER_INFO, values, " WHERE 1=1", null);
     }
 
     public ArrayList<String> getUserInfo(){
@@ -107,7 +106,6 @@ public class mSQLiteOpenHelper extends SQLiteOpenHelper {
         while(c.moveToNext()){
             for(int i = 1; i < c.getColumnCount(); i++){
                 returnList.add(c.getString(i));
-                //Log.i("JSON",c.getString(i)+"");
             }
         }
         c.close();
