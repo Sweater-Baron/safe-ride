@@ -41,23 +41,16 @@ public class HttpHelper {
         protected String doInBackground(String... jString) {
                 String data = "";
                 try {
-                    URL url = new URL("http://ix.cs.uoregon.edu:6666/_createFromApp");
+                    URL url = new URL("http://ix.cs.uoregon.edu:6666/_createFromApp?="+jString[0]);
                     Log.i("upload", "URL is " + url.toString());
 
                     URLConnection conn = url.openConnection();
                     conn.setDoInput(true);
                     conn.setDoOutput(true);
-
-                    OutputStreamWriter os = new OutputStreamWriter(conn.getOutputStream(), "UTF-8");
-                    os.write(jString[0]); //writes JSON to body of php
-                    os.close();
-
+                    
                     conn.connect();
                     int code = ((HttpURLConnection) conn).getResponseCode();
                     Log.i("upload", "code: " + code);
-                    if(code!=200){
-                        return "server error";
-                    }
 
                     BufferedReader br = new BufferedReader((new InputStreamReader(
                             conn.getInputStream())));

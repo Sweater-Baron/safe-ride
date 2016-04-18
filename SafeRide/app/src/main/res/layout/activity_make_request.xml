@@ -51,7 +51,6 @@
             android:src="@drawable/home_icon"
             android:padding="10dp"
             android:layout_alignParentRight="true"
-            android:layout_alignParentBelow="true"
             android:onClick="homeAddressFillStart"/>
     </LinearLayout>
 
@@ -81,7 +80,6 @@
             android:src="@drawable/home_icon"
             android:padding="10dp"
             android:layout_alignParentRight="true"
-            android:layout_alignParentBelow="true"
             android:onClick="homeAddressFillEnd"/>
     </LinearLayout>
 

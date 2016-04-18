@@ -8,6 +8,8 @@ import json
 import uuid
 import logging
 
+import sqlstuff
+
 # Global stuff:
 import CONFIG
 
@@ -41,6 +43,8 @@ def handle_app_request():
     #user_request["numberOfPassengers"] = request.args.get(
     #    "numberOfPassengers", type=int)
     print(user_request)
+    sqlstuff.insert_request_to_db(user_request)
+
     return "okay"
 
 @app.errorhandler(404)
