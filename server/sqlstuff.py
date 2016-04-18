@@ -11,7 +11,7 @@ def insert_request(name, phonenumber, studentid, pickup, dropoff, numberOfPassen
 	cur = db.cursor()
 	cur.execute("INSERT INTO UNSCHEDULED (name, phonenumber, studentid, pickup, dropoff, numberOfPassengers, time) VALUES (?,?,?,?,?,?,?)", (name, phonenumber, studentid, pickup, dropoff, numberOfPassengers, time))
 
-def stack_overflow_insert(user_request):
+def insert_request_to_db(user_request):
 	db = sqlite3.connect('saferide.db')
 	cur = db.cursor()
 	qmarks = ', '.join('?' * len(user_request))
