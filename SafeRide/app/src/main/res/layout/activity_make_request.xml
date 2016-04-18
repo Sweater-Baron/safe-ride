@@ -9,8 +9,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.uoregoncis422.saferide.makeRequest"
     android:background="@drawable/dark_city_lights">
-    <!--android:background="@drawable/crop_city_lights"-->
-
 
     <TextView
         android:id="@+id/text_id"
@@ -24,7 +22,6 @@
         android:gravity="center"
         android:textSize="50dp"
         android:fontFamily="sans-serif-light"
-        android:focusableInTouchMode="true"
         android:layout_centerHorizontal="true" />
 
 
@@ -54,6 +51,7 @@
             android:src="@drawable/home_icon"
             android:padding="10dp"
             android:layout_alignParentRight="true"
+            android:layout_alignParentBelow="true"
             android:onClick="homeAddressFillStart"/>
     </LinearLayout>
 
@@ -83,6 +81,7 @@
             android:src="@drawable/home_icon"
             android:padding="10dp"
             android:layout_alignParentRight="true"
+            android:layout_alignParentBelow="true"
             android:onClick="homeAddressFillEnd"/>
     </LinearLayout>
 
@@ -96,6 +95,7 @@
         android:lines="1"
         android:inputType="number"
         android:imeActionId="0x00000006"
+        android:imeOptions="actionDone"
         android:textColorHint="#FFFFFF"
         android:textColor="#FFFFFF"/>
 

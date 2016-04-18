@@ -85,38 +85,50 @@ public class makeRequest extends Activity {
         Log.i("JSON", jsonArray.toString());
     }
 
+    private ArrayList<String> generateInputList(int hour, int min){
+        ArrayList<String> returnList = new ArrayList<>();
+        returnList.add(editTexts.getText().toString());
+        returnList.add(editTexte.getText().toString());
+        returnList.add(editTextp.getText().toString());
+        returnList.add(getTimeString(hour, min));
+        return returnList;
+    }
+
     public void checkInfo(View view){
         boolean validInput = true;
         boolean tooManyPassengers = true;
         int missingInput = -1;
-        ArrayList<String> arrayList = new ArrayList<>();
 
-        arrayList.add(editTexts.getText().toString());
-        arrayList.add(editTexte.getText().toString());
-        arrayList.add(editTextp.getText().toString());
-        arrayList.add(getTimeString());
+        int hour = timePicker.getCurrentHour();
+        int min = timePicker.getCurrentMinute();
 
-        for(int i = 0; i < arrayList.size(); i++){
-            if(arrayList.get(i).length()<=0){
+        ArrayList<String> inputList = generateInputList(hour,min);
+
+        for(int i = 0; i < inputList.size(); i++){
+            if(inputList.get(i).length()<=0){
                 validInput = false;
                 missingInput = i;
             }
         }
 
-        try {
-            if (Integer.parseInt(arrayList.get(2)) > 3) {
+        //check passenger size
+        if(inputList.get(2).length() > 0){
+            if (Integer.parseInt(inputList.get(2)) > 3) {
                 validInput = false;
                 tooManyPassengers = true;
             }
-        }catch(Exception e){
-
         }
+
+        if(inputList.get(3).length()>0){
+            checkIfInSchedule(hour,min);
+        }
+
 
         //Validate both addresses, validate that time is within schedule. Addresses must both be real addresses and in bounds
 
         if(!validInput){
             //Toast incorrect input
-            arrayList.clear();
+            inputList.clear();
             if(missingInput == 0){
                 Toast.makeText(getApplicationContext(), "Invalid Start Address", Toast.LENGTH_LONG).show();
             }else if(missingInput == 1){
@@ -129,14 +141,11 @@ public class makeRequest extends Activity {
             }
 
         }else{
-            createJSON(arrayList);
+            createJSON(inputList);
         }
     }
 
-    private String getTimeString(){
-        int hour = timePicker.getCurrentHour();
-        int min = timePicker.getCurrentMinute();
-
+    private String getTimeString(int hour, int min){
         if (hour == 0) {
             hour += 12;
             format = "AM";
@@ -149,8 +158,22 @@ public class makeRequest extends Activity {
         } else {
             format = "AM";
         }
-
         return hour+":"+min+ " " + format;
+    }
+
+    private boolean checkIfInSchedule(int hour, int min){
+        int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+        int season = calendar.get(Calendar.DAY_OF_YEAR);
+        //if in fall or winter
+            //if Sun-thurs
+                //if 6pm - 12am
+                    //return true
+            //if fri-sat
+                //if 6pm-2pm
+        //if in spring
+        //if in summer
+
+        return true;
     }
 
     public void editProfile(View view){
