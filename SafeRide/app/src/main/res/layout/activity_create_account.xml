@@ -8,9 +8,9 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.uoregoncis422.saferide.CreateAccount"
-    android:background="@drawable/crop_city_lights"
-    android:backgroundTint="#dddddd"
-    android:backgroundTintMode="multiply">
+    android:background="@drawable/dark_city_lights">
+
+    <!--android:background="@drawable/crop_city_lights"-->
 
     <TextView
         android:id="@+id/text_id"
@@ -25,8 +25,9 @@
         android:textAlignment="center"
         android:gravity="center"
         android:textSize="50dp"
-        android:fontFamily="sans-serif-light"
-        android:focusableInTouchMode="true" />
+        android:fontFamily="sans-serif-light" />
+
+
 
     <EditText android:hint="@string/username"
         android:layout_width="wrap_content"
@@ -58,19 +59,31 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:imeActionId="0x00000006"
         android:id="@+id/phonenumber"
-        android:imeOptions="actionDone"
         android:singleLine="true"
         android:lines="1"
         android:textColorHint="#FFFFFF"
         android:textColor="#FFFFFF"
         android:inputType="number"
         android:phoneNumber="false" />
+
+    <EditText android:hint="@string/homeAddress"
+        android:layout_below="@+id/phonenumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:imeActionId="0x00000006"
+        android:id="@+id/homeAddress"
+        android:imeOptions="actionDone"
+        android:singleLine="true"
+        android:lines="1"
+        android:textColorHint="#FFFFFF"
+        android:textColor="#FFFFFF" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/phonenumber"
+        android:layout_below="@+id/homeAddress"
         android:text="@string/create"
         android:textColor="#ffffff"
         android:onClick="createUser"

@@ -5,6 +5,8 @@
     <string name="create">Join SafeRide!</string>
     <string name="student">951XXXXXXX</string>
     <string name="phoneNumber">5555555555</string>
+    <string name="homeAddress">Enter your home address</string>
+
 
     <string name="start">Starting Address</string>
     <string name="end">Ending Address</string>
