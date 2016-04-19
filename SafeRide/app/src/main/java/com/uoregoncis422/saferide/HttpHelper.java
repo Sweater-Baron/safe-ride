@@ -47,7 +47,7 @@ public class HttpHelper {
                     URLConnection conn = url.openConnection();
                     conn.setDoInput(true);
                     conn.setDoOutput(true);
-                    
+
                     conn.connect();
                     int code = ((HttpURLConnection) conn).getResponseCode();
                     Log.i("upload", "code: " + code);
