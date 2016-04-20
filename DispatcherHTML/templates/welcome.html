@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<!--
+<?php
+$host = "localhost"; // Host name 
+$username = ""; // Mysql username 
+$password = ""; // Mysql password 
+$db_name = "test"; // Database name 
+$tbl_name = "test_mysql"; // Table name 
+$server_name = "localhost";
+
+// Create connection
+$con = new mysqli($server_name, $username, $password, $db_name, 3306);
+if($con->connect_error){
+   die("Connection failed: ".$con->connect_error);
+}
+
+// Check connection
+if($con->connect_error){
+ die("Connection failed: ".$conn->connect_error);
+}
+
+$sql = "SELECT * FROM $tbl_name";
+$result = $con->query($sql);
+?>
+//-->
+<html>
+  <head>
+    <title>Safe Ride Scheduling Requests</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="static/bootstrap.min.css" rel="stylesheet" media="screen">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="functionality.js"></script>
+    <script>
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Safe Ride Scheduling Requests</h1>
+        <div style="row">
+            <br>
+            <h3>Reservation Requests</h3>
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                    <th> </th>
+                    <th>Name</th>
+                    <th>ID#</th>
+                    <th>Phone#</th>
+                    <th>Start Address</th>
+                    <th>Destination</th>
+                    <th>Passengers</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                    <td><input type="checkbox" name="news2" value="1"></td>
+                    <td>Name1</td>
+                    <td>951555555</td>
+                    <td>555-555-5555</td>
+                    <td>1234 E 11 Ave</td>
+                    <td>3333 E 15 Ave</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="news2" value="1"></td>
+                    <td>Name2</td>
+                    <td>951555555</td>
+                    <td>555-555-5555</td>
+                    <td>1234 E 11 Ave</td>
+                    <td>3333 E 15 Ave</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="news2" value="1"></td>
+                    <td>Name3</td>
+                    <td>951555555</td>
+                    <td>555-555-5555</td>
+                    <td>1234 E 11 Ave</td>
+                    <td>3333 E 15 Ave</td>
+                    <td>2</td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+        <button class="btn btn-primary" type="submit">Move to Scheduled</button>
+        <button onclick="rem()">Remove</button>
+        <div style="row">
+            <br>
+            <h3>Scheduled Reservations</h3>
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                    <th> </th>
+                    <th>Name</th>
+                    <th>ID#</th>
+                    <th>Phone#</th>
+                    <th>Start Address</th>
+                    <th>Destination</th>
+                    <th>Passengers</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                    <td><input type="checkbox" name="news2" value="1"></td>
+                    <td>Name1</td>
+                    <td>951555555</td>
+                    <td>555-555-5555</td>
+                    <td>1234 E 11 Ave</td>
+                    <td>3333 E 15 Ave</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="news2" value="1"></td>
+                    <td>Name2</td>
+                    <td>951555555</td>
+                    <td>555-555-5555</td>
+                    <td>1234 E 11 Ave</td>
+                    <td>3333 E 15 Ave</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="news2" value="1"></td>
+                    <td>Name3</td>
+                    <td>951555555</td>
+                    <td>555-555-5555</td>
+                    <td>1234 E 11 Ave</td>
+                    <td>3333 E 15 Ave</td>
+                    <td>2</td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+      <br>
+    </div>
+  </body>
+</html>
+<!--
+var $row = $($.fn.colorbox.element()).closest('tr');
+$row.fadeOut(1000, function() {
+    $('#NewTableBody').append($row);
+    $row.fadeIn(1000);
+});
+
+var $row = $($.fn.colorbox.element()).closest('tr');
+    $row.fadeOut(1000, function() {
+    $('#NewTableBody').append($row);
+    $row.fadeIn(1000);
+});
+//-->
