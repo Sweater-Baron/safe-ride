@@ -43,6 +43,20 @@ def handle_app_request():
     print(user_request)
     return "okay"
 
+@app.route("/dispatch")
+def dispatch_page():
+    ride_request = {
+                    "note":"This is an example, remember to remove it",
+                    "name":"Chad Thunderdick",
+                    "studentid":"951696969",
+                    "phonenumber":"541-555-5555",
+                    "pickup":"1888 Hilyard St.",
+                    "dropoff":"Your place ;) ;) ;)",
+                    "numberOfPassengers":"1"
+                    }
+    flask.g["rides"] = [ride_request for x in range(5)]
+    return flask.render_template("dispatch.html")
+    
 @app.errorhandler(404)
 def page_not_found(error):
     app.logger.debug("404")
