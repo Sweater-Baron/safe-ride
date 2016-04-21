@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html> <head>
+<title>Safe Ride Scheduling</title>
+
+  <!-- 'viewport' is used by bootstrap to respond to device size -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Javascript:  JQuery from a content distribution network (CDN) -->
+  <script
+     src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
+  </script>
+
+  <!-- Bootstrap includes javascript and css  (must follow jquery) -->
+  <link rel="stylesheet"
+   href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+   <script
+    src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js">
+</script>
+
+   <!-- Our own style sheet -->
+   <link rel="stylesheet" href="/static/css/memos.css" />
+
+
+</head>
+<body>
+<div class="container">
+<h1>Safe Ride Scheduling Requests</h1>
+<br>
+<h3> Reservation Requests</h3>
+{% if g.rides %}
+  <form action='_delete' method='post'>
+  <div class="row">
+      <div class="col-md-6">
+      <input type="submit" class="btn btn-primary btn-sm" value="Deleted">
+      </span>
+      </div>
+  </div> <!-- row -->
+  <table id="list1" class="table table-hover">
+              <thead>
+                <tr>
+                    <th> </th>
+                    <th>Name</th>
+                    <th>ID#</th>
+                    <th>Phone#</th>
+                    <th>Start Address</th>
+                    <th>Destination</th>
+                    <th>Passengers</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+              
+  {% for request in g.rides %}
+  <tr>
+    <td><input type="checkbox" id="op_2" name="news2" value="0"></td>
+    <td>{{ request.name }}</td>
+    <td>{{ request.studentid }}</td>
+    <td>{{ request.phonenumber }}</td>
+    <td>{{ request.pickup }}</td>
+    <td>{{ request.dropoff }}</td>
+    <td>{{ request.numberOfPassengers }}</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+  </table>
+  </form>
+{% else %}
+  <p>No requests have been made.</p>
+{% endif %}
+
+ 
+
+</div> <!-- container -->
+</body>
+</html>
