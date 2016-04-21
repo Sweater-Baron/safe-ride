@@ -27,7 +27,7 @@
 <div class="container">
 <h1>Request a ride</h1>
 
-<form id="entry">
+<form action='_createFromApp' id="entry">
     <div class="row">
         <div class="col-md-2">
         Your name:
@@ -89,28 +89,5 @@
     </div>
 </form>
 </div>
-<script>
-// Prevent the "normal" submit button functionality:
-$("#entry").submit( function(event) {
-   event.preventDefault();
-  });
-
-$("#submit-btn").click(function() {
-    var userRequest = {
-        name: $("#name").val(),
-        studentid: $("#studentid").val(),
-        phonenumber: $("#phonenumber").val(),
-        pickup: $("#pickup").val(),
-        dropoff: $("#dropoff").val(),
-        numberOfPassengers: $("#numberOfPassengers").val()
-    }
-    
-    $.getJSON( "/_createFromApp", userRequest, 
-               function(data) {
-                    var x = "FIXME";
-               }
-             );
-  });
-</script>
 </body>
 </html>
