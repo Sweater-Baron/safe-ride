@@ -23,6 +23,22 @@ def select_all():
 	cur.execute("SELECT * FROM UNSCHEDULED")
 	print(len(cur.fetchall()))
 
+def select_unscheduled():
+	db = sqlite3.connect('saferide.db')
+	cur = db.cursor()
+
+	dictList = []
+	fields = ["name", "studentid", "phonenumber", "pickup", "dropoff", "numberOfPassengers"]
+	for row in cur.execute("SELECT * FROM UNSCHEDULED"):
+		#values = row.split(',')
+		newDict = {}
+		i = 0;
+		for thing in fields:
+			#values[i] = values.replace(',', '')
+			newDict[thing] = row[i]
+			dictList.append(newDict)
+			i = i + 1
+	return dictList
 
 def test_function():
 	db = sqlite3.connect('saferide.db')
@@ -35,6 +51,10 @@ def test_function():
 
 
 if __name__ == "__main__":
-	db = sqlite3.connect('saferide.db')
-	test_function()
-	select_all()
+	# db = sqlite3.connect('saferide.db')
+	# test_function()
+	# select_all()
+	print(select_unscheduled())
+
+
+
