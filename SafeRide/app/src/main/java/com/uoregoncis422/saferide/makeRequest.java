@@ -181,7 +181,7 @@ public class makeRequest extends Activity {
     }
 
     public void sendJSON(JSONObject jArray){
-        httpHelper.uploadJSON(jArray.toString());
+        httpHelper.uploadJSON(jArray);
     }
 
 
