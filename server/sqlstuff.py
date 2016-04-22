@@ -10,7 +10,7 @@ def insert_request_to_db(user_request):
     db = sqlite3.connect('saferide.db')
     cur = db.cursor()
     columns = ', '.join(user_request.keys())
-    placeholders = "'"+"', '".join(value_cleanse(user_request.values()))+"'"
+    placeholders = "'"+"', '".join(list(map(value_cleanse, user_request.values())))+"'"
     query = "INSERT INTO UNSCHEDULED (%s) VALUES (%s)" % (columns, placeholders)
     print(query)
     cur.execute(query)
