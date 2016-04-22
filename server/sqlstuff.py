@@ -10,7 +10,7 @@ def insert_request_to_db(user_request):
     db = sqlite3.connect('saferide.db')
     cur = db.cursor()
     columns = ', '.join(user_request.keys())
-    placeholders = "'"+"', '".join(user_request.values())+"'"
+    placeholders = "'"+"', '".join(value_cleanse(user_request.values()))+"'"
     query = "INSERT INTO UNSCHEDULED (%s) VALUES (%s)" % (columns, placeholders)
     print(query)
     cur.execute(query)
@@ -39,6 +39,13 @@ def delete_request(id):
     cur.execute("DELETE FROM UNSCHEDULED WHERE id=?", (id,))
     db.commit()
     cur.close()
+
+def value_cleanse(value):
+    value.replace("'","")
+    value.replace('"',"")
+    return value
+    
+
 
 
 # def test_function():
