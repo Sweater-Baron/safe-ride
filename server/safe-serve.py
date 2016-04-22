@@ -32,11 +32,11 @@ def handle_app_request():
         user_request[thing] = request.args.get(thing, type=str)
     #user_request["numberOfPassengers"] = request.args.get(
     #    "numberOfPassengers", type=int)
-    #print("user request: "+user_request)
-    #sqlstuff.insert_request_to_db(user_request)
+    print("user request: "+user_request)
+    sqlstuff.insert_request_to_db(user_request)
     #sqlstuff.select_all()
 
-    return flask.redirect("/confirmation", 303)
+#    return flask.redirect("/confirmation", 303)
 
 @app.route("/dispatch")
 def dispatch_page():
