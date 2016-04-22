@@ -30,8 +30,6 @@ def handle_app_request():
     user_request = {}
     for thing in fields:
         user_request[thing] = request.args.get(thing, type=str)
-    #user_request["numberOfPassengers"] = request.args.get(
-    #    "numberOfPassengers", type=int)
     print("user request: "+ str(user_request))
     sqlstuff.insert_request_to_db(user_request)
     #sqlstuff.select_all()
@@ -40,22 +38,13 @@ def handle_app_request():
 
 @app.route("/dispatch")
 def dispatch_page():
-    ride_request = {
-                    "note":"This is an example, remember to remove it",
-                    "name":"Chad Thunderdick",
-                    "studentid":"951696969",
-                    "phonenumber":"541-555-5555",
-                    "pickup":"1888 Hilyard St.",
-                    "dropoff":"Your place ;) ;) ;)",
-                    "numberOfPassengers":"1"
-                    }
-    flask.g.rides = [ride_request for x in range(5)]
+    flask.g.rides = sqlstuff.select_unscheduled()
     return flask.render_template("dispatch.html")
 
 @app.route("/confirmation")
 def confirmation_page():
     return flask.render_template("confirmation.html")
-  
+
 @app.errorhandler(404)
 def page_not_found(error):
     app.logger.debug("404")

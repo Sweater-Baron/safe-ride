@@ -30,6 +30,7 @@ def select_unscheduled():
 			newDict[thing] = row[i]
 			i = i + 1
 		dictList.append(newDict)
+    db.close()
 	return dictList
 
 def delete_request(id):
