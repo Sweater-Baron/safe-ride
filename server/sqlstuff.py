@@ -42,7 +42,7 @@ def delete_request(id):
     cur.close()
 
 def value_cleanse(dictionary):
-    for keys, values in dictionary.items():
+    for key in dictionary.keys():
         dictionary[key] = dictionary[key].replace("'","")
         dictionary[key] = dictionary[key].replace('"',"")
     return dictionary
