@@ -24,15 +24,15 @@ def index():
   app.logger.debug("Index")
   return flask.render_template('index.html')
 
-@app.route("/_createFromApp", method=['POST'])
+@app.route("/_createFromApp", methods=['POST'])
 def handle_app_request():
-    fields = ["name", "studentid", "phonenumber", "pickup", "dropoff", "numberOfPassengers"]
+    fields = ["name", "studentid", "phonenumber", "pickup", "dropoff", "numberOfPassengers","time"]
     user_request = {}
     for thing in fields:
         user_request[thing] = request.args.get(thing, type=str)
     #user_request["numberOfPassengers"] = request.args.get(
     #    "numberOfPassengers", type=int)
-    print("user request: "+user_request)
+    print("user request: "+ str(user_request))
     sqlstuff.insert_request_to_db(user_request)
     #sqlstuff.select_all()
 
