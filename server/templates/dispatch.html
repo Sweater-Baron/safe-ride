@@ -18,7 +18,7 @@
 </script>
 
    <!-- Our own style sheet -->
-   <link rel="stylesheet" href="/static/css/memos.css" />
+   <link rel="stylesheet" href="/static/css/saferide.css" />
 
 
 </head>
@@ -42,8 +42,9 @@
                     <th>Name</th>
                     <th>ID#</th>
                     <th>Phone#</th>
-                    <th>Start Address</th>
+                    <th>Pick-up</th>
                     <th>Destination</th>
+                    <th>Time</th>
                     <th>Passengers</th>
                 </tr>
               </thead>
@@ -58,6 +59,7 @@
     <td>{{ request.phonenumber }}</td>
     <td>{{ request.pickup }}</td>
     <td>{{ request.dropoff }}</td>
+    <td>{{ request.time }}</td>
     <td>{{ request.numberOfPassengers }}</td>
   </tr>
   {% endfor %}
@@ -65,7 +67,7 @@
   </table>
   </form>
 {% else %}
-  <p>No requests have been made.</p>
+  <p>No ride requests to display.</p>
 {% endif %}
 
  
