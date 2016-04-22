@@ -19,4 +19,9 @@
     <string name="schedule">Schedule Your Ride</string>
 
     <string name="title_activity_make_request">makeRequest</string>
+    <string name="title_activity_confirmation">confirmationActivity</string>
+
+    <string name="confirmed">Your Ride Request Is Being Processed</string>
+    <string name="thanks">Thanks for using Safe Ride!</string>
+
 </resources>

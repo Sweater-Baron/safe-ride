@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.uoregoncis422.saferide">
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -20,7 +22,10 @@
             android:label="@string/title_activity_create_account" />
         <activity
             android:name=".makeRequest"
-            android:label="@string/title_activity_make_request"></activity>
+            android:label="@string/title_activity_make_request" />
+        <activity
+            android:name=".confirmationActivity"
+            android:label="@string/title_activity_confirmation"></activity>
     </application>
 
 </manifest>

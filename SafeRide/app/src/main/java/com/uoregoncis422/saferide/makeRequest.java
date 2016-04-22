@@ -43,10 +43,6 @@ public class makeRequest extends Activity {
         setTimeStuff();
         setEditTexts();
         set_timepicker_text_colour();
-
-        int hour = calendar.get(Calendar.HOUR_OF_DAY);
-        int min = calendar.get(Calendar.MINUTE);
-        //showTime(hour, min);
     }
 
     private void setTimeStuff(){
@@ -119,13 +115,6 @@ public class makeRequest extends Activity {
             }
         }
 
-        if(inputList.get(3).length()>0){
-            checkIfInSchedule(hour,min);
-        }
-
-
-        //Validate both addresses, validate that time is within schedule. Addresses must both be real addresses and in bounds
-
         if(!validInput){
             //Toast incorrect input
             inputList.clear();
@@ -161,27 +150,13 @@ public class makeRequest extends Activity {
         return hour+":"+min+ " " + format;
     }
 
-    private boolean checkIfInSchedule(int hour, int min){
-        int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
-        int season = calendar.get(Calendar.DAY_OF_YEAR);
-        //if in fall or winter
-            //if Sun-thurs
-                //if 6pm - 12am
-                    //return true
-            //if fri-sat
-                //if 6pm-2pm
-        //if in spring
-        //if in summer
-
-        return true;
-    }
-
     public void editProfile(View view){
         startActivityForResult(new Intent(this, CreateAccount.class), 1);
     }
 
     public void sendJSON(JSONObject jArray){
         httpHelper.uploadJSON(jArray);
+        startActivity(new Intent(this, confirmationActivity.class));
     }
 
 
@@ -211,7 +186,6 @@ public class makeRequest extends Activity {
 
     private void set_numberpicker_text_colour(NumberPicker number_picker){
         final int count = number_picker.getChildCount();
-        //final int color = getResources().getColor(R.color.text);
         final int color = Color.WHITE;
 
         for(int i = 0; i < count; i++){
