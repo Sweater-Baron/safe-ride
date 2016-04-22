@@ -24,7 +24,7 @@ def index():
   app.logger.debug("Index")
   return flask.render_template('index.html')
 
-@app.route("/_createFromApp")
+@app.route("/_createFromApp", method=['POST'])
 def handle_app_request():
     fields = ["name", "studentid", "phonenumber", "pickup", "dropoff", "numberOfPassengers"]
     user_request = {}
