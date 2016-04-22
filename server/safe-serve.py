@@ -24,7 +24,7 @@ def index():
   app.logger.debug("Index")
   return flask.render_template('index.html')
 
-@app.route("/_createFromApp", methods=['POST'])
+@app.route("/_createFromApp", methods=['POST', 'GET'])
 def handle_app_request():
     fields = ["name", "studentid", "phonenumber", "pickup", "dropoff", "numberOfPassengers","time"]
     user_request = {}
@@ -44,6 +44,12 @@ def dispatch_page():
 @app.route("/confirmation")
 def confirmation_page():
     return flask.render_template("confirmation.html")
+    
+@app.route("/_delete", methods=["POST"])
+def process_delete_request():
+    for ride_id in request.form:
+        sqlstuff.delete_request(ride_id)
+    return flask.redirect("/dispatch", 303)
 
 @app.errorhandler(404)
 def page_not_found(error):
