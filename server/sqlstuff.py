@@ -32,6 +32,14 @@ def select_unscheduled():
 		dictList.append(newDict)
 	return dictList
 
+def delete_request(id):
+	db = sqlite3.connect('saferide.db')
+	cur = db.cursor()
+	cur.execute("DELETE FROM UNSCHEDULED WHERE id=?", (id,))
+	db.commit()
+	cur.close()
+
+
 # def test_function():
 # 	db = sqlite3.connect('saferide.db')
 # 	dict2 = {'name': 'new', 'phonenumber': '503', 'studentid': '951', 'pickup': 'here', 'dropoff':'there','numberOfPassengers':'3', 'time':'4:15'};
@@ -46,7 +54,10 @@ if __name__ == "__main__":
 	# db = sqlite3.connect('saferide.db')
 	# test_function()
 	# select_all()
+
 	print(select_unscheduled())
+	# delete_request(3)
+	# print(select_unscheduled())
 
 
 

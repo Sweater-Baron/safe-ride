@@ -23,10 +23,21 @@
 
 
 </head>
+<!--<body background="http://www.medhatspca.ca/sites/default/files/news_photos/2014-Apr-15/node-147/cute-little-cat.jpg">
+-->
 <body>
+<script>
+.banner-img {
+    width: 100%;
+}
+</script>
 <div class="container">
-<h1>Request a ride</h1>
-
+<div class="container">
+    <img class="banner-img" src="http://pages.uoregon.edu/saferide/images/saferide_banner.png">
+</div>
+<br/>
+<h3>Request a Ride</h3>
+<br/>
 <form action='_createFromApp' id="entry">
     <div class="row">
         <div class="col-md-2">
@@ -36,6 +47,7 @@
         <input type="text" class="form-control" name="name" id="name" placeholder="John Doe"/>
         </div>
     </div> <!-- row -->
+    <br/>
     <div class="row">
         <div class="col-md-2">
         Your student ID:
@@ -44,6 +56,7 @@
         <input type="text" class="form-control" name="studentid" id="studentid" placeholder="951987654"/>
         </div>
     </div> <!-- row -->
+    <br/>
     <div class="row">
         <div class="col-md-2">
         Your phone number:
@@ -52,6 +65,7 @@
         <input type="text" class="form-control" name="phonenumber" id="phonenumber" placeholder="541-555-5678"/>
         </div>
     </div> <!-- row -->
+    <br/>
     <div class="row">
         <div class="col-md-2">
         Your pick-up location:
@@ -60,6 +74,7 @@
         <input type="text" class="form-control" name="pickup" id="pickup" placeholder="123 Main Street"/>
         </div>
     </div> <!-- row -->
+    <br/>
     <div class="row">
         <div class="col-md-2">
         Your drop-off location:
@@ -68,6 +83,7 @@
         <input type="text" class="form-control" name="dropoff" id="dropoff" placeholder="234 Main Street"/>
         </div>
     </div> <!-- row -->
+    <br/>
     <div class="row">
         <div class="col-md-2">
         Pick-up time:
@@ -76,6 +92,7 @@
         <input type="text" class="form-control" name="time" id="time" placeholder="8:45 pm"/>
         </div>
     </div> <!-- row -->
+    <br/>
     <div class="row">
         <div class="col-md-2">
         Number of passengers:
@@ -84,8 +101,9 @@
         <input type="text" class="form-control" name="numberOfPassengers" id="numberOfPassengers" placeholder="1"/>
         </div>
     </div> <!-- row -->
+    <br/>
     <div class="row">
-        <input id="submit-btn" type="submit" class="btn btn-default" value="Submit Request">
+        <center><input id="submit-btn" type="submit" class="btn btn-primary" value="Submit Request"></center>
     </div>
 </form>
 </div>
